@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#SwOS (Switch OS)
+#Small script for setting next boot grub menuentry
+
+# Get the list of available grub menu entries
+menu_entries=$(sudo awk -F\' '/menuentry /{print $2}' /boot/grub/grub.cfg)
+
+# Use dmenu to ask the user which menu entry to select
+selected_entry=$(echo "$menu_entries" | dmenu -l 10 -fn "MononokiNerdFont-12" -i -p "Select a grub menu entry: ")
+
+if [[ -z $selected_entry ]]; then
+    exit 0
+fi
+
+
+# Use grub-reboot to set the selected entry as the default for the next boot
+sudo grub-reboot "$selected_entry"
+
+echo "Set next boot entry to "$selected_entry
+
+# Use dmenu to ask the user if they want to reboot now
+confirm=$(echo -e "No\nYes" | dmenu -fn "MononokiNerdFont-12" -i -p "Do you want to reboot now? (default: No)")
+
+# If the user selected "Yes", reboot the system
+if [ "$confirm" = "Yes" ]; then
+  sudo reboot
+fi
+

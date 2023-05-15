@@ -31,13 +31,16 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # Aliasesseses
-alias asdf="setxkbmap real-prog-dvorak"
-alias aoeu="setxkbmap se"
-alias snth="setxkbmap se us_dvorak"
+alias asdf="setxkbmap real-prog-dvorak && backspace"
+alias aoeu="setxkbmap se && backspace"
+
+alias snth="setxkbmap se us_dvorak && backspace"
+#alias asdf="setxkbmap real-prog-dvorak && ~/backspace"
+
 #alias eith="nvim $HOME/.config/i3/config"
 alias ezsh="nvim $HOME/.zshrc"
 alias envi="nvim $HOME/.config/nvim/"
-alias etmu="nvim $HOME/.tmux.conf"
+alias etmu="nvim $HOME/.config/tmux/tmux.conf"
 
 # Exports
 export SUDO_EDITOR=/usr/bin/nvim
@@ -45,6 +48,7 @@ export EDITOR=/usr/bin/nvim
 export MANPAGER='nvim +Man!'
 
 export TERMINAL=/usr/bin/alacritty
+export PATH=$PATH:$HOME/.local/bin/
 
 # Load zsh-syntax-highlighting; should be last.
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

@@ -23,8 +23,10 @@ return require('packer').startup(function(use)
   use("ThePrimeagen/harpoon")
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
-  use("nvim-treesitter/nvim-treesitter-context");
+  use("nvim-treesitter/nvim-treesitter-context")
   use("sbdchd/neoformat");
+
+  use("ThePrimeagen/vim-be-good")
 
   use {
   'VonHeikemen/lsp-zero.nvim',
@@ -38,6 +40,7 @@ return require('packer').startup(function(use)
         pcall(vim.cmd, 'MasonUpdate')
       end,
     },
+
     {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
     -- Autocompletion
